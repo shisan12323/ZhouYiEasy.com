@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zhou Yi Divination Hall - Feng Shui and Fortune Telling</title>
-    <meta name="description" content="Discover your future with Zhou Yi Divination Hall. Get personalized feng shui and fortune telling insights based on ancient Chinese wisdom.">
+    <title>Zhou Yi Easy Fortune - Feng Shui and Fortune Telling</title>
+    <meta name="description" content="Get personalized feng shui and fortune telling insights based on your birth information and questions at Zhou Yi Easy Fortune.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -37,15 +39,23 @@
             padding: 2em;
             margin-top: 2em;
         }
-        textarea {
+        form {
+            display: grid;
+            gap: 1em;
+        }
+        label {
+            font-weight: bold;
+        }
+        select, input[type="text"], textarea {
             width: 100%;
-            height: 150px;
-            padding: 12px;
+            padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            resize: vertical;
             font-size: 16px;
-            margin-bottom: 1em;
+        }
+        textarea {
+            height: 150px;
+            resize: vertical;
         }
         button {
             background-color: #4caf50;
@@ -91,18 +101,35 @@
                 text-shadow: .25em 0 0 #333, .5em 0 0 #333;
             }
         }
+        .flatpickr-input {
+            background-color: white;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Zhou Yi Divination Hall</h1>
+        <h1>Zhou Yi Easy Fortune</h1>
     </header>
     <div class="container">
         <main>
             <h2>Feng Shui and Fortune Telling</h2>
-            <p>Welcome to Zhou Yi Divination Hall. Enter your question below to receive insights based on ancient Chinese wisdom.</p>
-            <textarea id="question" placeholder="Enter your question here..."></textarea>
-            <button onclick="getAnswer()">Get Insight</button>
+            <p>Welcome to Zhou Yi Easy Fortune. Please provide your birth information and question to receive personalized insights.</p>
+            <form id="fortuneForm">
+                <label for="birthDate">Birth Date and Time:</label>
+                <input type="text" id="birthDate" required>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="question">Your Question:</label>
+                <textarea id="question" placeholder="Enter your question here..." required></textarea>
+
+                <button type="submit">Get Insight</button>
+            </form>
             <div class="loading" id="loading">Consulting the oracle</div>
             <div id="result"></div>
         </main>
@@ -113,15 +140,24 @@
         const OPENAI_API_KEY = 'sk-nqaptsdfttcfiitaobhppavdjzhuqljhpmbrkxnjzcmckqqr';
         const OPENAI_MODEL = 'Qwen/Qwen2-7B-Instruct';
 
-        async function getAnswer() {
+        // Initialize flatpickr for date and time picker
+        flatpickr("#birthDate", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            time_24hr: true,
+            minDate: "1900-01-01",
+            maxDate: new Date(),
+        });
+
+        // Form submission handler
+        document.getElementById('fortuneForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const birthDate = document.getElementById('birthDate').value;
+            const gender = document.getElementById('gender').value;
             const question = document.getElementById('question').value;
+
             const resultDiv = document.getElementById('result');
             const loadingDiv = document.getElementById('loading');
-
-            if (!question) {
-                alert('Please enter a question.');
-                return;
-            }
 
             loadingDiv.style.display = 'block';
             resultDiv.style.display = 'none';
@@ -137,8 +173,21 @@
                     body: JSON.stringify({
                         model: OPENAI_MODEL,
                         messages: [
-                            { role: 'system', content: 'You are a feng shui and fortune telling expert based on Zhou Yi (I Ching) principles. Provide insightful and thoughtful answers to questions.' },
-                            { role: 'user', content: question }
+                            { role: 'system', content: `
+# 角色
+你是一个算命大师，可以为用户提供命运预测服务。
+
+## 技能
+- 当用户需要算命时，你可以先让用户提供他们的出生日期、出生时间和出生地点等信息。
+- 根据用户提供的信息，你可以使用工具进行搜索和计算，得出用户的命盘信息。
+- 然后，你可以使用命盘信息为用户提供命运预测和建议。
+
+## 限制
+- 你只能提供基于命盘信息的命运预测和建议，不能提供其他类型的预测或建议。
+- 你只能使用用户提供的信息进行计算，不能使用其他信息。
+- 你只能使用工具进行搜索和计算，不能使用其他方法。
+` },
+                            { role: 'user', content: `Birth information: ${birthDate}, Gender ${gender}. Question: ${question}` }
                         ]
                     })
                 });
@@ -154,12 +203,12 @@
                 resultDiv.style.display = 'block';
             } catch (error) {
                 console.error('Error:', error);
-                resultDiv.innerHTML = '<p>Sorry, there was an error processing your question. Please try again later.</p>';
+                resultDiv.innerHTML = '<p>Sorry, there was an error processing your request. Please try again later.</p>';
                 resultDiv.style.display = 'block';
             } finally {
                 loadingDiv.style.display = 'none';
             }
-        }
+        });
     </script>
 </body>
 </html>
