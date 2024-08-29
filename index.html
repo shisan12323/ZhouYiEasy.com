@@ -12,8 +12,9 @@
             --primary-color: #1a237e;
             --secondary-color: #3f51b5;
             --text-color: #333;
-            --background-color: #f0f0f0;
+            --background-color: #f5f5f5;
         }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -22,11 +23,13 @@
             margin: 0;
             padding: 0;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
+
         header {
             background-color: var(--primary-color);
             color: white;
@@ -34,15 +37,18 @@
             padding: 1em 0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+
         .logo {
             width: 80px;
             height: 80px;
             margin-bottom: 10px;
         }
+
         h1 {
             margin: 0;
             font-size: 2.5em;
         }
+
         main {
             background-color: white;
             border-radius: 8px;
@@ -50,14 +56,17 @@
             padding: 2em;
             margin-top: 2em;
         }
+
         form {
             display: grid;
             gap: 1em;
         }
+
         label {
             font-weight: bold;
             color: var(--primary-color);
         }
+
         select, input[type="text"], textarea {
             width: 100%;
             padding: 12px;
@@ -66,14 +75,17 @@
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
+
         select:focus, input[type="text"]:focus, textarea:focus {
             outline: none;
             border-color: var(--secondary-color);
         }
+
         textarea {
             height: 150px;
             resize: vertical;
         }
+
         button {
             background-color: var(--primary-color);
             color: white;
@@ -84,9 +96,11 @@
             font-size: 16px;
             transition: background-color 0.3s;
         }
+
         button:hover {
             background-color: var(--secondary-color);
         }
+
         #result {
             margin-top: 2em;
             padding: 1em;
@@ -94,14 +108,17 @@
             border-radius: 4px;
             display: none;
         }
+
         .loading {
             text-align: center;
             display: none;
         }
+
         .loading:after {
             content: '...';
             animation: dots 1s steps(5, end) infinite;
         }
+
         @keyframes dots {
             0%, 20% {
                 color: rgba(0,0,0,0);
@@ -118,8 +135,22 @@
                 text-shadow: .25em 0 0 var(--text-color), .5em 0 0 var(--text-color);
             }
         }
+
         .flatpickr-input {
             background-color: white;
+        }
+
+        .insight-section {
+            margin-top: 1em;
+            padding: 1em;
+            background-color: #f0f4ff;
+            border-radius: 4px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .insight-section h4 {
+            color: var(--primary-color);
+            margin-top: 0;
         }
     </style>
     <!-- Google tag (gtag.js) -->
@@ -135,11 +166,16 @@
 <body>
     <header>
         <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="45" fill="#f0f0f0"/>
+            <circle cx="50" cy="50" r="45" fill="#f5f5f5"/>
             <path d="M50 5 A45 45 0 0 1 95 50 L50 50 Z" fill="#1a237e"/>
+            <path d="M95 50 A45 45 0 0 1 50 95 L50 50 Z" fill="#3f51b5"/>
             <path d="M50 95 A45 45 0 0 1 5 50 L50 50 Z" fill="#1a237e"/>
-            <circle cx="50" cy="27.5" r="7.5" fill="#1a237e"/>
-            <circle cx="50" cy="72.5" r="7.5" fill="#f0f0f0"/>
+            <path d="M5 50 A45 45 0 0 1 50 5 L50 50 Z" fill="#3f51b5"/>
+            <circle cx="50" cy="50" r="10" fill="#f5f5f5"/>
+            <circle cx="50" cy="25" r="5" fill="#1a237e"/>
+            <circle cx="50" cy="75" r="5" fill="#3f51b5"/>
+            <circle cx="25" cy="50" r="5" fill="#1a237e"/>
+            <circle cx="75" cy="50" r="5" fill="#3f51b5"/>
         </svg>
         <h1>Zhou Yi Easy Fortune</h1>
     </header>
@@ -228,22 +264,22 @@
 3. **八字排盘**
   - 根据客户提供的信息，你将进行八字排盘，分析天干地支、五行相生相克等。
 4. **性格分析**
-  - 根据八字排盘的结果，你会分析客户的性格特点和潜在优势。
+  - 根据八字排盘的结果，你会分析客户的性格特征和潜在优势。
 5. **运势预测**
-  - 结合八字和当前时局，你会为客户提供未来一段时间的运势预测。
-6. **问题解答**
-  - 针对客户提出的具体问题，你会结合八字分析给出相应的建议。
-7. **调理建议**
-  - 最后，你会根据分析结果，为客户提供五行调理或风水布局的建议，以改善运势。
+  - 结合八字和客户的具体问题，你会对客户的运势进行预测和分析。
+6. **建议提供**
+  - 根据分析结果，你会给出具体的建议，包括如何趋吉避凶、改善生活等。
+7. **回答总结**
+  - 最后，你会对整个咨询过程进行简要总结，并鼓励客户积极面对生活。
 
 ## 注意事项
-- 你的回答应该保持专业性，同时也要通俗易懂。
-- 避免使用过于玄学或迷信的表述，注重理性分析。
-- 对于一些敏感问题，如健康、婚姻等，要谨慎回答，建议客户咨询专业人士。
-- 强调个人努力的重要性，不要让客户过分依赖命理。
-- 保持耐心和同理心，理解每个人的处境可能都不同。
-
-请你使用英文对客户提供咨询和回答。` },
+- 你的回答应该保持专业性和神秘感，但同时要易于理解。
+- 避免使用过于晦涩的术语，尽量用通俗易懂的语言解释复杂的概念。
+- 在给出建议时，要强调个人努力的重要性，不要让客户过分依赖预测结果。
+- 保持积极向上的态度，即使遇到不利的预测，也要给予客户希望和鼓励。
+- 请使用英语回答。
+- 请将回答分为以下几个部分：Character Analysis, Fortune Prediction, Feng Shui Advice, Overall Guidance。每个部分的内容控制在100字左右。
+` },
                             { role: 'user', content: `Birth information: ${birthDate}, Gender ${gender}. Question: ${question}` }
                         ]
                     })
@@ -256,7 +292,24 @@
                 const data = await response.json();
                 const answer = data.choices[0].message.content;
 
-                resultDiv.innerHTML = `<h3>Insight:</h3><p>${answer}</p>`;
+                // 解析回答并按部分展示
+                const sections = ['Character Analysis', 'Fortune Prediction', 'Feng Shui Advice', 'Overall Guidance'];
+                let formattedAnswer = '<h3>Your Personalized Insight:</h3>';
+                
+                sections.forEach(section => {
+                    const regex = new RegExp(`${section}:\\s*([\\s\\S]*?)(?=\\n\\n|$)`);
+                    const match = answer.match(regex);
+                    if (match) {
+                        formattedAnswer += `
+                            <div class="insight-section">
+                                <h4>${section}</h4>
+                                <p>${match[1].trim()}</p>
+                            </div>
+                        `;
+                    }
+                });
+
+                resultDiv.innerHTML = formattedAnswer;
                 resultDiv.style.display = 'block';
             } catch (error) {
                 console.error('Error:', error);
