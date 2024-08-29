@@ -8,11 +8,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
     <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #3f51b5;
+            --text-color: #333;
+            --background-color: #f0f0f0;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f0f0f0;
+            color: var(--text-color);
+            background-color: var(--background-color);
             margin: 0;
             padding: 0;
         }
@@ -22,11 +28,16 @@
             padding: 20px;
         }
         header {
-            background-color: #1a237e;
+            background-color: var(--primary-color);
             color: white;
             text-align: center;
             padding: 1em 0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
         }
         h1 {
             margin: 0;
@@ -45,20 +56,26 @@
         }
         label {
             font-weight: bold;
+            color: var(--primary-color);
         }
         select, input[type="text"], textarea {
             width: 100%;
-            padding: 8px;
+            padding: 12px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        select:focus, input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
         }
         textarea {
             height: 150px;
             resize: vertical;
         }
         button {
-            background-color: #4caf50;
+            background-color: var(--primary-color);
             color: white;
             border: none;
             padding: 12px 20px;
@@ -68,7 +85,7 @@
             transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: var(--secondary-color);
         }
         #result {
             margin-top: 2em;
@@ -91,14 +108,14 @@
                 text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0);
             }
             40% {
-                color: #333;
+                color: var(--text-color);
                 text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0);
             }
             60% {
-                text-shadow: .25em 0 0 #333, .5em 0 0 rgba(0,0,0,0);
+                text-shadow: .25em 0 0 var(--text-color), .5em 0 0 rgba(0,0,0,0);
             }
             80%, 100% {
-                text-shadow: .25em 0 0 #333, .5em 0 0 #333;
+                text-shadow: .25em 0 0 var(--text-color), .5em 0 0 var(--text-color);
             }
         }
         .flatpickr-input {
@@ -117,6 +134,13 @@
 </head>
 <body>
     <header>
+        <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45" fill="#f0f0f0"/>
+            <path d="M50 5 A45 45 0 0 1 95 50 L50 50 Z" fill="#1a237e"/>
+            <path d="M50 95 A45 45 0 0 1 5 50 L50 50 Z" fill="#1a237e"/>
+            <circle cx="50" cy="27.5" r="7.5" fill="#1a237e"/>
+            <circle cx="50" cy="72.5" r="7.5" fill="#f0f0f0"/>
+        </svg>
         <h1>Zhou Yi Easy Fortune</h1>
     </header>
     <div class="container">
@@ -204,7 +228,22 @@
 3. **八字排盘**
   - 根据客户提供的信息，你将进行八字排盘，分析天干地支、五行相生相克等。
 4. **性格分析**
-  - 根据八字排盘的
+  - 根据八字排盘的结果，你会分析客户的性格特点和潜在优势。
+5. **运势预测**
+  - 结合八字和当前时局，你会为客户提供未来一段时间的运势预测。
+6. **问题解答**
+  - 针对客户提出的具体问题，你会结合八字分析给出相应的建议。
+7. **调理建议**
+  - 最后，你会根据分析结果，为客户提供五行调理或风水布局的建议，以改善运势。
+
+## 注意事项
+- 你的回答应该保持专业性，同时也要通俗易懂。
+- 避免使用过于玄学或迷信的表述，注重理性分析。
+- 对于一些敏感问题，如健康、婚姻等，要谨慎回答，建议客户咨询专业人士。
+- 强调个人努力的重要性，不要让客户过分依赖命理。
+- 保持耐心和同理心，理解每个人的处境可能都不同。
+
+请你使用英文对客户提供咨询和回答。` },
                             { role: 'user', content: `Birth information: ${birthDate}, Gender ${gender}. Question: ${question}` }
                         ]
                     })
